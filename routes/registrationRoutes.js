@@ -8,16 +8,16 @@ const {
 } = require("../controllers/registrationController");
 const {protect} = require("../middlewares/authMiddleware");
 
-//  daftar seminar
+// Daftar seminar
 router.post("/", protect, registerForSeminar);
 
-// daftar seminar yang diikuti user
+// Semua tiket user (untuk halaman Ticket)
+router.get("/me/all", protect, getAllTicketsForUser);
+
+// Daftar seminar yang diikuti user
 router.get("/", protect, getUserRegistrations);
 
-// detail tiket
+// Detail tiket berdasarkan ID - LETAKKAN PALING AKHIR
 router.get("/:id", protect, getRegistrationById);
-
-// semua tiket user (untuk halaman Ticket)
-router.get("/me/all", protect, getAllTicketsForUser);
 
 module.exports = router;
