@@ -18,6 +18,11 @@ app.use("/api/auth", require("../routes/authRoutes"));
 app.use("/api/seminars", require("../routes/seminarRoutes"));
 app.use("/api/registrations", require("../routes/registrationRoutes"));
 
+// Default route
+app.get("/", (req, res) => {
+  res.send("Backend EMS API is running");
+});
+
 // Jalankan server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
