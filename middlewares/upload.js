@@ -1,13 +1,13 @@
 const multer = require("multer");
-const path = require("path");
+const {CloudinaryStorage} = require("multer-storage-cloudinary");
+const cloudinary = require("../config/cloudinary");
 
-// Set storage engine
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "ems-seminars", // opsional, bisa ubah nama folder
+    allowed_formats: ["jpg", "jpeg", "png"],
+    transformation: [{width: 800, height: 600, crop: "limit"}],
   },
 });
 
